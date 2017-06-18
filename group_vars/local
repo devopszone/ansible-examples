@@ -1,0 +1,3 @@
+---
+webappsdir: /usr/share/tomcat/webapps/
+urlpath: https://raw.githubusercontent.com/devopszone/war-files/master/petclinic.war
