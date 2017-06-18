@@ -1,0 +1,4 @@
+---
+# tasks file for deploytomcat
+- include: installtomcat.yml
+- include: deploywar.yml

@@ -1,0 +1,6 @@
+---
+- name: "install java"
+  yum:
+    name: java-1.7.0-openjdk-devel
+    state: installed
+  become: true 
