@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: "install java"
+      yum:
+        name: java-1.7.0-openjdk-devel
+        state: installed
+    - name: "install tomcat"
+      yum:
+        name: tomcat
+        state: installed
+    - name: "deploy warfile"
+      get_url:
+        url: https://raw.githubusercontent.com/devopszone/war-files/master/petclinic.war
+        dest: /usr/share/tomcat/webapps/petclinic.war
+    - name: "service restart"
+      service:
+        name: tomcat
+        state: restarted
+ 
