@@ -1,0 +1,6 @@
+---
+- name: "deploy war file"
+  copy:
+    src: petclinic.war
+    dest: /usr/share/tomcat/webapps/petclinic.war
+  become: true

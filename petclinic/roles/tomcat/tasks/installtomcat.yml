@@ -1,0 +1,17 @@
+---
+
+- name: "install tomcat" 
+  yum:
+    name: tomcat
+    state: installed
+- name: "start tomcat"
+  service:
+    name: tomcat
+    state: started
+- name: "configure tomcat-users file"
+  template:
+    src: tomcat-users.xml.j2
+    dest: /etc/tomcat/tomcat-users.xml
+  become: true
+
+
