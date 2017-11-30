@@ -23,7 +23,7 @@
   - name: "install docker-compose"
     command: pip install docker-compose
   - name: "clone the file"
-    command: git clone https://github.com/devopszone/installation_docs.git
+    command: git clone https://github.com/devzone/installation_docs.git
     args:
       chdir: /home/vagrant/
   - name: "install unzip"
