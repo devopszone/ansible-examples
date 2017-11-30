@@ -1,0 +1,42 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: "Install Git"
+    yum:
+      name: git
+      state: present
+  - name: "Download docker script"
+    command: curl -fsSL get.docker.com -o get-docker.sh
+    args:
+      chdir: /home/vagrant
+  - name: "run docker script"
+    script: get-docker.sh
+  - name: "start Docker"
+    service:
+      name: docker
+      state: started
+  - name: "install pip"
+    yum:
+      name: python-pip
+      state: present
+  - name: "install docker-compose"
+    command: pip install docker-compose
+  - name: "clone the file"
+    command: git clone https://github.com/devopszone/installation_docs.git
+    args:
+      chdir: /home/vagrant/
+  - name: "install unzip"
+    unarchive:
+      src: /home/vagrant/installation_docs/Telegraf-Grafana-InfluxDB.zip
+      dest: /home/vagrant/installation_docs/
+  - name: "docker build"
+    command: docker-compose build
+    args:
+      chdir: /home/vagrant/installation_docs/Telegraf-Grafana-InfluxDB
+  - name: "docker up"
+    command: docker-compose up
+    args:
+      chdir: /home/vagrant/installation_docs/Telegraf-Grafana-InfluxDB/
+
+      
